@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { LOSS_CODES } from '../data/plcData';
-import { Edit3, X, Save, RotateCcw } from 'lucide-react';
+import { Edit3, X, Save } from 'lucide-react';
 
 export default function HmiEntryModal({ day, onSaveDayData, onClose }) {
   const [formData, setFormData] = useState({

@@ -5,7 +5,6 @@ export default function Topbar({
   machines,
   currentMachine,
   onSelectMachine,
-  currentDay,
   sourceMode,
   onChangeSourceMode,
   onOpenRegisters,
@@ -98,7 +97,13 @@ export default function Topbar({
         <button
           className="action-chip"
           onClick={onOpenHmi}
-          title="Manual Production / Loss Overwrite"
+          disabled={sourceMode !== 'manual'}
+          style={sourceMode !== 'manual' ? { opacity: 0.4, cursor: 'not-allowed' } : undefined}
+          title={
+            sourceMode === 'manual'
+              ? 'Manual Production / Loss Overwrite'
+              : 'Switch Data Feed Source to Manual HMI Feed to edit'
+          }
         >
           <Edit3 size={14} />
           <span>Edit Shift</span>

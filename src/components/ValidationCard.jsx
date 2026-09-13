@@ -1,8 +1,9 @@
 import React from 'react';
 import { ShieldCheck, Check, AlertOctagon } from 'lucide-react';
+import { computeValidation } from '../data/oeeCalculator';
 
-export default function ValidationCard({ dayData }) {
-  const validation = dayData.validation || { excel: 0, plc: 0 };
+export default function ValidationCard({ dayData, shiftMetrics }) {
+  const validation = computeValidation(shiftMetrics);
   const diff = Math.abs(validation.excel - validation.plc);
   const isPass = diff <= 1.0;
 

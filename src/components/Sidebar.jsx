@@ -1,5 +1,5 @@
 import React from 'react';
-import { Cpu, Activity, Sun, Moon, Radio } from 'lucide-react';
+import { Sun, Moon, Radio } from 'lucide-react';
 
 export default function Sidebar({
   machines,
@@ -8,6 +8,8 @@ export default function Sidebar({
   theme,
   onToggleTheme,
   sourceMode,
+  isLiveSimulating,
+  plcAddress,
   lastSyncTime,
 }) {
   return (
@@ -78,7 +80,13 @@ export default function Sidebar({
           <span>PLC Link</span>
           <span className="diag-val live">
             <span className="diag-dot"></span>
-            {sourceMode === 'plc' ? 'LIVE (192.168.1.101)' : sourceMode === 'sim' ? 'SIMULATED FEED' : 'MANUAL HMI'}
+            {isLiveSimulating
+              ? 'SIMULATED FEED'
+              : sourceMode === 'plc'
+              ? `LIVE (${plcAddress})`
+              : sourceMode === 'manual'
+              ? 'MANUAL HMI'
+              : 'DEMO SNAPSHOT'}
           </span>
         </div>
 

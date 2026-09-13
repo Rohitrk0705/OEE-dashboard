@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { INITIAL_MACHINES } from './data/plcData';
-import { computeShift } from './data/oeeCalculator';
+import { computeShift, computeValidation } from './data/oeeCalculator';
 
 import Sidebar from './components/Sidebar';
 import Topbar from './components/Topbar';
@@ -45,13 +45,14 @@ export default function App() {
   const currentDay = currentMachine.days[currentDayIndex] || currentMachine.days[0];
   const shiftMetrics = computeShift(currentDay);
 
+  const syncNow = () =>
+    setLastSyncTime(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' }));
+
   // Live Simulation Engine (Ticks good parts when active)
   useEffect(() => {
-    setLastSyncTime(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' }));
-  }, [currentMachineId, currentDayIndex]);
+    if (!isLiveSimulating || sourceMode === 'manual' || currentMachine.status !== 'run') return;
 
-  useEffect(() => {
-    if (!isLiveSimulating) return;
+    const tickMs = Math.max(500, (currentDay.sapCycleMin * 60 * 1000) / 20);
 
     const interval = setInterval(() => {
       setMachines((prevMachines) =>
@@ -64,16 +65,23 @@ export default function App() {
           return { ...m, days: updatedDays };
         })
       );
-      setLastSyncTime(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' }));
-    }, 2800);
+      syncNow();
+    }, tickMs);
 
     return () => clearInterval(interval);
-  }, [isLiveSimulating, currentMachineId, currentDayIndex]);
+  }, [isLiveSimulating, sourceMode, currentMachineId, currentDayIndex, currentMachine.status, currentDay.sapCycleMin]);
 
   // Handle machine selection
   const handleSelectMachine = (machine) => {
     setCurrentMachineId(machine.id);
     setCurrentDayIndex(machine.days.length - 1);
+    syncNow();
+  };
+
+  // Handle day selection
+  const handleSelectDay = (idx) => {
+    setCurrentDayIndex(idx);
+    syncNow();
   };
 
   // Handle manual HMI data updates
@@ -89,11 +97,11 @@ export default function App() {
         return { ...m, days: updatedDays };
       })
     );
-    setLastSyncTime(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' }));
+    syncNow();
   };
 
   // Export CSV functionality
-  const handleExportCsv = () => {
+  const handleExportCsv = (daysToExport = currentMachine.days) => {
     const headers = [
       'Machine ID',
       'Machine Name',
@@ -114,8 +122,9 @@ export default function App() {
       'PLC Truth (%)',
     ];
 
-    const rows = currentMachine.days.map((d) => {
+    const rows = daysToExport.map((d) => {
       const s = computeShift(d);
+      const v = computeValidation(s);
       return [
         currentMachine.id,
         `"${currentMachine.name}"`,
@@ -132,8 +141,8 @@ export default function App() {
         (s.quality * 100).toFixed(2),
         (s.oee * 100).toFixed(2),
         (s.capacityUtil * 100).toFixed(2),
-        d.validation.excel.toFixed(2),
-        d.validation.plc.toFixed(2),
+        v.excel.toFixed(2),
+        v.plc.toFixed(2),
       ].join(',');
     });
 
@@ -157,6 +166,8 @@ export default function App() {
         theme={theme}
         onToggleTheme={toggleTheme}
         sourceMode={sourceMode}
+        isLiveSimulating={isLiveSimulating}
+        plcAddress={currentMachine.plcAddress}
         lastSyncTime={lastSyncTime}
       />
 
@@ -167,7 +178,6 @@ export default function App() {
           machines={machines}
           currentMachine={currentMachine}
           onSelectMachine={handleSelectMachine}
-          currentDay={currentDay}
           sourceMode={sourceMode}
           onChangeSourceMode={setSourceMode}
           onOpenRegisters={() => setShowRegistersModal(true)}
@@ -181,7 +191,7 @@ export default function App() {
         <DaySelector
           days={currentMachine.days}
           activeIndex={currentDayIndex}
-          onSelectDay={setCurrentDayIndex}
+          onSelectDay={handleSelectDay}
         />
 
         {/* Master SCADA Grid */}
@@ -199,7 +209,7 @@ export default function App() {
           <WeeklyTrendChart
             days={currentMachine.days}
             activeIndex={currentDayIndex}
-            onSelectDay={setCurrentDayIndex}
+            onSelectDay={handleSelectDay}
             theme={theme}
           />
 
@@ -207,7 +217,7 @@ export default function App() {
           <HistoricalReport days={currentMachine.days} onExportCsv={handleExportCsv} />
 
           {/* Card 6: Logic Validation Excel vs PLC (Span 4) */}
-          <ValidationCard dayData={currentDay} />
+          <ValidationCard dayData={currentDay} shiftMetrics={shiftMetrics} />
         </div>
 
         {/* Footer Reference */}

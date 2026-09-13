@@ -3,23 +3,22 @@ import Chart from 'chart.js/auto';
 import { computeShift } from '../data/oeeCalculator';
 import { TrendingUp } from 'lucide-react';
 
+const metricConfigs = {
+  oee: { label: 'OEE', color: '#10b981', gradientStart: 'rgba(16, 185, 129, 0.28)', gradientEnd: 'rgba(16, 185, 129, 0.01)' },
+  availability: { label: 'Availability', color: '#3b82f6', gradientStart: 'rgba(59, 130, 246, 0.28)', gradientEnd: 'rgba(59, 130, 246, 0.01)' },
+  performance: { label: 'Performance', color: '#f59e0b', gradientStart: 'rgba(245, 158, 11, 0.28)', gradientEnd: 'rgba(245, 158, 11, 0.01)' },
+  quality: { label: 'Quality', color: '#ef4444', gradientStart: 'rgba(239, 68, 68, 0.28)', gradientEnd: 'rgba(239, 68, 68, 0.01)' },
+};
+
 export default function WeeklyTrendChart({ days, activeIndex, onSelectDay, theme }) {
   const [metric, setMetric] = useState('oee');
   const chartRef = useRef(null);
   const chartInstance = useRef(null);
 
-  const metricConfigs = {
-    oee: { label: 'OEE', color: '#10b981', gradientStart: 'rgba(16, 185, 129, 0.28)', gradientEnd: 'rgba(16, 185, 129, 0.01)' },
-    availability: { label: 'Availability', color: '#3b82f6', gradientStart: 'rgba(59, 130, 246, 0.28)', gradientEnd: 'rgba(59, 130, 246, 0.01)' },
-    performance: { label: 'Performance', color: '#f59e0b', gradientStart: 'rgba(245, 158, 11, 0.28)', gradientEnd: 'rgba(245, 158, 11, 0.01)' },
-    quality: { label: 'Quality', color: '#ef4444', gradientStart: 'rgba(239, 68, 68, 0.28)', gradientEnd: 'rgba(239, 68, 68, 0.01)' },
-  };
-
-  const activeConfig = metricConfigs[metric];
-
   useEffect(() => {
     if (!chartRef.current) return;
 
+    const activeConfig = metricConfigs[metric];
     const ctx = chartRef.current.getContext('2d');
     const labels = days.map((d) => d.day);
     const data = days.map((d) => {
@@ -103,7 +102,7 @@ export default function WeeklyTrendChart({ days, activeIndex, onSelectDay, theme
               callback: (v) => `${v}%`,
             },
             suggestedMin: 0,
-            suggestedMax: 100,
+            suggestedMax: metric === 'performance' ? undefined : 100,
           },
         },
         onClick: (event, elements) => {
@@ -120,7 +119,7 @@ export default function WeeklyTrendChart({ days, activeIndex, onSelectDay, theme
         chartInstance.current.destroy();
       }
     };
-  }, [days, activeIndex, metric, theme]);
+  }, [days, activeIndex, metric, theme, onSelectDay]);
 
   return (
     <div className="scada-card span-6">

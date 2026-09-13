@@ -1,16 +1,33 @@
-# React + Vite
+# OEE Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A real-time OEE (Overall Equipment Effectiveness) monitoring dashboard for shop-floor production lines, built with React, Vite, and Chart.js. It mirrors the Delta DVP-EH3-L PLC's register map (`D100`–`D237` for shift/production/ratio data, `M100`–`M109` for machine status bits), so every metric on screen traces back to a named register in the ladder logic.
 
-Currently, two official plugins are available:
+**Live demo:** https://rohitrk0705.github.io/OEE-dashboard/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+- Multi-machine monitoring across 3 production stations
+- The 4 OEE pillars — Availability, Performance, Quality, and overall OEE — computed live per shift
+- Pareto-style loss breakdown across planned and unplanned downtime categories
+- Weekly performance trend chart with per-metric views
+- PLC register inspector mapping live values to their Delta EH3-L register addresses
+- Manual HMI entry modal for overriding shift counts and loss minutes
+- CSV export of shift and historical data
+- Dark / light theme toggle
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Local Development
 
-## Expanding the Oxlint configuration
+```bash
+npm install
+npm run dev
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+To build a production bundle:
+
+```bash
+npm run build
+```
+
+## Deployment
+
+Pages deployment is automatic: every push to `main` triggers the GitHub Actions workflow, which builds the app and publishes it to GitHub Pages.

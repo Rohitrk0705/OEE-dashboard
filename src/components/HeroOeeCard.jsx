@@ -1,6 +1,6 @@
 import React from 'react';
 import { formatPct, clampPct, getOeeStatus } from '../data/oeeCalculator';
-import { Gauge, CheckCircle, AlertTriangle, Activity } from 'lucide-react';
+import { Gauge, CheckCircle, AlertTriangle } from 'lucide-react';
 
 export default function HeroOeeCard({ shiftMetrics }) {
   const oee = shiftMetrics.oee;

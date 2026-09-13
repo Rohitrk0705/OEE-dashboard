@@ -1,22 +1,14 @@
 import React, { useState } from 'react';
 import { computeAggregate, formatPct } from '../data/oeeCalculator';
-import { History, Calendar, FileText, CheckCircle } from 'lucide-react';
+import { History, FileText } from 'lucide-react';
 
 export default function HistoricalReport({ days, onExportCsv }) {
-  const today = new Date().toISOString().slice(0, 10);
-  const weekAgo = new Date(Date.now() - 6 * 86400000).toISOString().slice(0, 10);
+  const [fromDate, setFromDate] = useState(() => new Date(Date.now() - 6 * 86400000).toISOString().slice(0, 10));
+  const [toDate, setToDate] = useState(() => new Date().toISOString().slice(0, 10));
 
-  const [fromDate, setFromDate] = useState(weekAgo);
-  const [toDate, setToDate] = useState(today);
-  const [reportGenerated, setReportGenerated] = useState(false);
-
-  // Compute aggregate metrics across all days in range (or all loaded days)
-  const stats = computeAggregate(days);
-
-  const handleGenerate = () => {
-    setReportGenerated(true);
-    setTimeout(() => setReportGenerated(false), 2000);
-  };
+  // Filter days within the selected date range, then compute aggregate metrics
+  const filteredDays = days.filter((d) => d.date >= fromDate && d.date <= toDate);
+  const stats = computeAggregate(filteredDays);
 
   const tiles = [
     { label: 'Average OEE', val: formatPct(stats.avgOee, 1), color: 'var(--teal)' },
@@ -61,19 +53,11 @@ export default function HistoricalReport({ days, onExportCsv }) {
         </div>
 
         <button
-          className="action-chip primary"
-          style={{ height: '36px', marginTop: 'auto' }}
-          onClick={handleGenerate}
-        >
-          {reportGenerated ? <CheckCircle size={14} /> : <FileText size={14} />}
-          <span>{reportGenerated ? 'Updated!' : 'Generate Report'}</span>
-        </button>
-
-        <button
           className="action-chip"
           style={{ height: '36px', marginTop: 'auto' }}
-          onClick={onExportCsv}
+          onClick={() => onExportCsv(filteredDays)}
         >
+          <FileText size={14} />
           <span>Export Historical CSV</span>
         </button>
       </div>

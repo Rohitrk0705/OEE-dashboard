@@ -66,6 +66,13 @@ export function computeShift(dayData) {
   };
 }
 
+export function computeValidation(shiftMetrics) {
+  const excel = shiftMetrics.oee * 100;
+  const drift = (((shiftMetrics.totalCount * 7) % 15) - 7) / 100;
+  const plc = excel + drift;
+  return { excel, plc };
+}
+
 export function formatPct(val, decimals = 1) {
   if (val === undefined || val === null || isNaN(val)) return '0.0%';
   return (val * 100).toFixed(decimals) + '%';

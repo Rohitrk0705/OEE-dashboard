@@ -40,8 +40,7 @@ export const INITIAL_MACHINES = [
         sapCycleMin: 2.5,
         good: 98,
         reject: 2,
-        lossMinutes: { TB: 30, LD: 30, TG: 0, TL: 40, SUL: 10, PM: 0, SA: 60, TC: 0, ML: 10, BD: 0, RR: 0, LB: 0, NM: 0, NL: 0, IN: 0 },
-        validation: { excel: 56.78, plc: 56.71 }
+        lossMinutes: { TB: 30, LD: 30, TG: 0, TL: 40, SUL: 10, PM: 0, SA: 60, TC: 0, ML: 10, BD: 0, RR: 0, LB: 0, NM: 0, NL: 0, IN: 0 }
       },
       {
         day: 'Tue',
@@ -50,8 +49,7 @@ export const INITIAL_MACHINES = [
         sapCycleMin: 2.5,
         good: 88,
         reject: 2,
-        lossMinutes: { TB: 30, LD: 30, TG: 30, TL: 0, SUL: 15, PM: 0, SA: 0, TC: 15, ML: 0, BD: 0, RR: 0, LB: 0, NM: 0, NL: 0, IN: 0 },
-        validation: { excel: 59.10, plc: 59.24 }
+        lossMinutes: { TB: 30, LD: 30, TG: 30, TL: 0, SUL: 15, PM: 0, SA: 0, TC: 15, ML: 0, BD: 0, RR: 0, LB: 0, NM: 0, NL: 0, IN: 0 }
       },
       {
         day: 'Wed',
@@ -60,8 +58,7 @@ export const INITIAL_MACHINES = [
         sapCycleMin: 2.5,
         good: 98,
         reject: 2,
-        lossMinutes: { TB: 30, LD: 30, TG: 90, TL: 0, SUL: 15, PM: 0, SA: 30, TC: 0, ML: 15, BD: 0, RR: 0, LB: 0, NM: 0, NL: 0, IN: 0 },
-        validation: { excel: 64.90, plc: 64.83 }
+        lossMinutes: { TB: 30, LD: 30, TG: 90, TL: 0, SUL: 15, PM: 0, SA: 30, TC: 0, ML: 15, BD: 0, RR: 0, LB: 0, NM: 0, NL: 0, IN: 0 }
       },
       {
         day: 'Thu',
@@ -70,8 +67,7 @@ export const INITIAL_MACHINES = [
         sapCycleMin: 2.5,
         good: 79,
         reject: 9,
-        lossMinutes: { TB: 30, LD: 30, TG: 30, TL: 120, SUL: 15, PM: 0, SA: 0, TC: 0, ML: 20, BD: 0, RR: 0, LB: 0, NM: 0, NL: 0, IN: 0 },
-        validation: { excel: 52.40, plc: 53.10 }
+        lossMinutes: { TB: 30, LD: 30, TG: 30, TL: 120, SUL: 15, PM: 0, SA: 0, TC: 0, ML: 20, BD: 0, RR: 0, LB: 0, NM: 0, NL: 0, IN: 0 }
       },
       {
         day: 'Fri',
@@ -80,8 +76,7 @@ export const INITIAL_MACHINES = [
         sapCycleMin: 2.5,
         good: 85,
         reject: 8,
-        lossMinutes: { TB: 30, LD: 30, TG: 0, TL: 0, SUL: 10, PM: 0, SA: 60, TC: 60, ML: 25, BD: 40, RR: 0, LB: 0, NM: 30, NL: 60, IN: 0 },
-        validation: { excel: 61.70, plc: 61.15 }
+        lossMinutes: { TB: 30, LD: 30, TG: 0, TL: 0, SUL: 10, PM: 0, SA: 60, TC: 60, ML: 25, BD: 40, RR: 0, LB: 0, NM: 30, NL: 60, IN: 0 }
       },
     ]
   },
@@ -103,8 +98,7 @@ export const INITIAL_MACHINES = [
         sapCycleMin: 2.2,
         good: 78,
         reject: 2,
-        lossMinutes: { TB: 30, LD: 30, TG: 60, TL: 40, SUL: 10, PM: 0, SA: 60, TC: 0, ML: 10, BD: 0, RR: 0, LB: 0, NM: 0, NL: 0, IN: 60 },
-        validation: { excel: 46.10, plc: 45.90 }
+        lossMinutes: { TB: 30, LD: 30, TG: 60, TL: 40, SUL: 10, PM: 0, SA: 60, TC: 0, ML: 10, BD: 0, RR: 0, LB: 0, NM: 0, NL: 0, IN: 60 }
       },
       {
         day: 'Tue',
@@ -113,8 +107,7 @@ export const INITIAL_MACHINES = [
         sapCycleMin: 2.2,
         good: 91,
         reject: 10,
-        lossMinutes: { TB: 30, LD: 30, TG: 0, TL: 0, SUL: 0, PM: 0, SA: 90, TC: 60, ML: 0, BD: 60, RR: 0, LB: 0, NM: 0, NL: 0, IN: 0 },
-        validation: { excel: 59.80, plc: 60.12 }
+        lossMinutes: { TB: 30, LD: 30, TG: 0, TL: 0, SUL: 0, PM: 0, SA: 90, TC: 60, ML: 0, BD: 60, RR: 0, LB: 0, NM: 0, NL: 0, IN: 0 }
       },
       {
         day: 'Wed',
@@ -123,8 +116,7 @@ export const INITIAL_MACHINES = [
         sapCycleMin: 2.2,
         good: 90,
         reject: 2,
-        lossMinutes: { TB: 30, LD: 30, TG: 90, TL: 0, SUL: 15, PM: 0, SA: 30, TC: 0, ML: 15, BD: 0, RR: 0, LB: 0, NM: 0, NL: 45, IN: 0 },
-        validation: { excel: 65.40, plc: 65.02 }
+        lossMinutes: { TB: 30, LD: 30, TG: 90, TL: 0, SUL: 15, PM: 0, SA: 30, TC: 0, ML: 15, BD: 0, RR: 0, LB: 0, NM: 0, NL: 45, IN: 0 }
       },
       {
         day: 'Thu',
@@ -133,8 +125,7 @@ export const INITIAL_MACHINES = [
         sapCycleMin: 2.2,
         good: 88,
         reject: 2,
-        lossMinutes: { TB: 30, LD: 30, TG: 30, TL: 0, SUL: 15, PM: 0, SA: 0, TC: 0, ML: 20, BD: 0, RR: 0, LB: 0, NM: 0, NL: 0, IN: 0 },
-        validation: { excel: 60.30, plc: 59.95 }
+        lossMinutes: { TB: 30, LD: 30, TG: 30, TL: 0, SUL: 15, PM: 0, SA: 0, TC: 0, ML: 20, BD: 0, RR: 0, LB: 0, NM: 0, NL: 0, IN: 0 }
       },
       {
         day: 'Fri',
@@ -143,8 +134,7 @@ export const INITIAL_MACHINES = [
         sapCycleMin: 2.2,
         good: 98,
         reject: 10,
-        lossMinutes: { TB: 30, LD: 30, TG: 0, TL: 0, SUL: 10, PM: 0, SA: 60, TC: 0, ML: 25, BD: 40, RR: 0, LB: 0, NM: 30, NL: 60, IN: 0 },
-        validation: { excel: 63.30, plc: 62.80 }
+        lossMinutes: { TB: 30, LD: 30, TG: 0, TL: 0, SUL: 10, PM: 0, SA: 60, TC: 0, ML: 25, BD: 40, RR: 0, LB: 0, NM: 30, NL: 60, IN: 0 }
       },
     ]
   },
@@ -166,8 +156,7 @@ export const INITIAL_MACHINES = [
         sapCycleMin: 2.7,
         good: 65,
         reject: 5,
-        lossMinutes: { TB: 30, LD: 30, TG: 0, TL: 0, SUL: 15, PM: 20, SA: 45, TC: 20, ML: 15, BD: 35, RR: 10, LB: 0, NM: 30, NL: 0, IN: 0 },
-        validation: { excel: 41.20, plc: 40.60 }
+        lossMinutes: { TB: 30, LD: 30, TG: 0, TL: 0, SUL: 15, PM: 20, SA: 45, TC: 20, ML: 15, BD: 35, RR: 10, LB: 0, NM: 30, NL: 0, IN: 0 }
       },
       {
         day: 'Tue',
@@ -176,8 +165,7 @@ export const INITIAL_MACHINES = [
         sapCycleMin: 2.7,
         good: 60,
         reject: 6,
-        lossMinutes: { TB: 30, LD: 30, TG: 0, TL: 0, SUL: 15, PM: 0, SA: 45, TC: 20, ML: 15, BD: 60, RR: 10, LB: 0, NM: 30, NL: 0, IN: 0 },
-        validation: { excel: 38.90, plc: 39.40 }
+        lossMinutes: { TB: 30, LD: 30, TG: 0, TL: 0, SUL: 15, PM: 0, SA: 45, TC: 20, ML: 15, BD: 60, RR: 10, LB: 0, NM: 30, NL: 0, IN: 0 }
       },
       {
         day: 'Wed',
@@ -186,8 +174,7 @@ export const INITIAL_MACHINES = [
         sapCycleMin: 2.7,
         good: 68,
         reject: 7,
-        lossMinutes: { TB: 30, LD: 30, TG: 0, TL: 0, SUL: 15, PM: 0, SA: 30, TC: 20, ML: 15, BD: 30, RR: 10, LB: 0, NM: 15, NL: 0, IN: 0 },
-        validation: { excel: 45.60, plc: 44.90 }
+        lossMinutes: { TB: 30, LD: 30, TG: 0, TL: 0, SUL: 15, PM: 0, SA: 30, TC: 20, ML: 15, BD: 30, RR: 10, LB: 0, NM: 15, NL: 0, IN: 0 }
       },
       {
         day: 'Thu',
@@ -196,8 +183,7 @@ export const INITIAL_MACHINES = [
         sapCycleMin: 2.7,
         good: 55,
         reject: 5,
-        lossMinutes: { TB: 30, LD: 30, TG: 0, TL: 0, SUL: 15, PM: 20, SA: 45, TC: 20, ML: 15, BD: 90, RR: 10, LB: 0, NM: 30, NL: 0, IN: 0 },
-        validation: { excel: 33.40, plc: 34.10 }
+        lossMinutes: { TB: 30, LD: 30, TG: 0, TL: 0, SUL: 15, PM: 20, SA: 45, TC: 20, ML: 15, BD: 90, RR: 10, LB: 0, NM: 30, NL: 0, IN: 0 }
       },
       {
         day: 'Fri',
@@ -206,8 +192,7 @@ export const INITIAL_MACHINES = [
         sapCycleMin: 2.7,
         good: 62,
         reject: 6,
-        lossMinutes: { TB: 30, LD: 30, TG: 0, TL: 0, SUL: 15, PM: 0, SA: 45, TC: 20, ML: 15, BD: 50, RR: 10, LB: 0, NM: 30, NL: 0, IN: 0 },
-        validation: { excel: 40.00, plc: 39.30 }
+        lossMinutes: { TB: 30, LD: 30, TG: 0, TL: 0, SUL: 15, PM: 0, SA: 45, TC: 20, ML: 15, BD: 50, RR: 10, LB: 0, NM: 30, NL: 0, IN: 0 }
       },
     ]
   }

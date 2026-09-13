@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { LOSS_CODES } from '../data/plcData';
-import { AlertCircle, Clock, Filter } from 'lucide-react';
+import { Clock } from 'lucide-react';
 
 export default function LossBreakdownCard({ dayData, shiftMetrics }) {
   const [filterType, setFilterType] = useState('all');
